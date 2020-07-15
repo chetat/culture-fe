@@ -1,8 +1,8 @@
 
-import {FETCH_MOVIE, FETCH_ERROR} from '../../actions/types';
+import {FETCH_MOVIE, FETCH_ERROR, FETCH_SEARCHED_RESULTS} from '../../actions/types';
 
 export const initialState = {
-    movie_data: {}
+    movie_data: {},
 };
 
 const movieReducer = (state=initialState, action) => {

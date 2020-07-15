@@ -12,6 +12,7 @@ export const UPDATE_USER = 'UPDATE_USER';
 export const USERS_LOADING = 'USERS_LOADING';
 
 export const USER_REGISTERED = 'USER_REGISTERED';
+export const FETCH_USER = 'FETCH_USER';
 
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const AUTH_ERROR = 'AUTH_ERROR';
@@ -21,3 +22,4 @@ export const UPDATE_USER_ERROR = 'UPDATE_USER_ERROR';
 
 export const FETCH_MOVIES = 'FETCH_MOVIES';
 export const FETCH_MOVIE = 'FETCH_MOVIE';
+export const FETCH_SEARCHED_RESULTS = 'FETCH_SEARCHED_RESULTS'

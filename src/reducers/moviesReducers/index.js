@@ -1,17 +1,24 @@
-import {FETCH_MOVIES, FETCH_ERROR} from '../../actions/types';
+import {FETCH_MOVIES, FETCH_SEARCHED_RESULTS, FETCH_ERROR} from '../../actions/types';
 
 export const initialState = {
     isLoading: false,
     fetchError: null,
-    movies: {}
+    movies: {},
+    searched_data: {}
+
 };
 
 const moviesReducer = (state=initialState, action) => {
     switch(action.type){
         case FETCH_MOVIES:
+            console.log("Update Nah di man" + action.payload)
             return {
                 ...state, movies: action.payload
             };
+        case FETCH_SEARCHED_RESULTS:
+            return Object.assign({}, state, {
+                    searched_data: action.payload
+                });
         case FETCH_ERROR:
             return {
                 ...state, fetchError: action.error
