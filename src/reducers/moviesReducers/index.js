@@ -11,7 +11,6 @@ export const initialState = {
 const moviesReducer = (state=initialState, action) => {
     switch(action.type){
         case FETCH_MOVIES:
-            console.log("Update Nah di man" + action.payload)
             return {
                 ...state, movies: action.payload
             };

@@ -20,9 +20,8 @@ const MovieDetail = (props) => {
 
 
 
-
     const render_movie = (movie) => {
-        if (movie !== null) {
+        if (typeof movie !== "undefined") {
             console.log("Hello")
             return (
                 <div>
@@ -69,8 +68,6 @@ const MovieDetail = (props) => {
         }
 
     }
-    console.log(movie)
-    console.log(actors)
 
     return (
         <div>

@@ -10,20 +10,19 @@ import { Link } from 'react-router-dom';
 
 const UserDetails = (props) => {
     const userId = props.match.params.userId;
-    console.log(userId)
     const dispatch = useDispatch()
-    const { actor, movies_appeared } = useSelector(state => state.user.user_data)
 
     useEffect(() => {
         dispatch(fetchUser(userId))
     }, [])
 
 
+    const { user, movies_appeared } = useSelector(state => state.user.user_data)
+    console.log(movies_appeared)
 
-
-    const render_actor = (actor) => {
-        if (actor !== null) {
-            console.log("Hello")
+    const render_actor = (user) => {
+        console.log(user)
+        if (typeof user !== "undefined") {
             return (
                 <div>
                    
@@ -31,13 +30,27 @@ const UserDetails = (props) => {
                         <h2 className="text-center py-5">User infos</h2>
                         <Row>
                             <Col lg={6}>
-                                <h5>Name: {actor.name}</h5>
+                                <h5>Name: {user.name}</h5>
                                 <h5>Biography :</h5>
-                                <p>{actor.bio}</p>
-                                <h5>Also Known As : {actor.aka}</h5>
+                                <p>{user.bio}</p>
+                                <h5>Also Known As : {user.aka}</h5>
                             </Col>
                             <Col>
                             <h5>Movies Featured</h5>
+
+                            <Row>
+                            {
+                                movies_appeared && movies_appeared.length > 0 ? movies_appeared.map((movie, index) => (
+                                    <Col lg={6}>
+                                        <MovieCard {...movie} key={index} />
+                                    </Col>
+                                )) : <div> <h2>No other Movie</h2> </div>
+                            }
+                            </Row>
+                            
+                            </Col>
+                            <Col>
+                            <h5>Music Featured</h5>
 
                             <Row>
                             {
@@ -57,16 +70,14 @@ const UserDetails = (props) => {
             )
         } else {
             return (
-                <h2>Actor Not Found</h2>
+                <h2>User Not Found</h2>
             )
         }
 
     }
-    console.log(actor)
-
     return (
         <div>
-            {render_actor(actor)}
+            {render_actor(user)}
         </div>
     )
 };

@@ -4,6 +4,7 @@ import MovieDetails from './pages/MovieDetails';
 import UserDetails from './pages/UserDetails';
 import {Route, Switch} from 'react-router-dom';
 
+
 const Routes = () => {
     return(
         <Switch>

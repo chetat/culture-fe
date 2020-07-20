@@ -1,15 +1,23 @@
 import React from 'react';
-import { Container, Row, InputGroup, Col, Form, Button, FormControl } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import MovieCard from '../../components/MovieCard';
+import UserCard from '../../components/UserCard';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMovies, filterMovie } from '../../actions/moviesAction';
+import { fetchMovies } from '../../actions/moviesAction';
 import { useEffect, useState } from 'react';
+import DisplayMoviesBtn from '../../components/SearchButtons/DisplayMoviesBtn';
+import DisplayUsersBtn from '../../components/SearchButtons/DisplayUsersBtn';
+import DisplayMusicBtn from '../../components/SearchButtons/DisplayMusicBtn'
+
+
 
 import './styles.css'
+import { fetchUsers } from '../../actions/usersAction';
 
 const Home = () => {
-    const [startDate, setStartDate] = useState('')
-    const [endDate, setEndDate] = useState('')
+    const [moviesDisplay, setMoviesDisplay] = useState(true)
+    const [musicDisplay, setMusicDisplay] = useState(false)
+    const [usersDisplay, setUsersDisplay] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -17,70 +25,103 @@ const Home = () => {
         dispatch(fetchMovies())
     }, [])
 
-    const movies = useSelector(state => state.movies.movies)
-    const searched = useSelector(state => state.movies.searched_data)
+    useEffect(() => {
+        dispatch(fetchUsers())
+    }, [])
+    const movies_years = useSelector(state => state.movies.movies)
+    const users = useSelector(state => state.users.users_data)
 
 
-    const displayData = (movies, searched) => {
-            return (
-                movies && movies.length > 0 ? movies.map((movie, index) => (
-                <MovieCard {...movie} key={index} />
-            )) :<div> <h2>Nothing Found</h2> </div>
-            )
+    const showMovies = (movies) => {
+        console.log(movies)
+        const years = []
+        for (const [key, value] of Object.entries(movies)) {
+            years.push(<MovieCard movies={value} year={key} />)
+        }
+        return years;
     }
-    
+    const showMusic = (movies) => {
+        const years = []
+        for (const [key, value] of Object.entries(movies)) {
+            years.push(<MovieCard movies={value} year={key} />)
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        dispatch(filterMovie(startDate, endDate))
+        }
+        return years;
+    }
+    const showUsers = (users_data) => {
+        const users_initial = [];
+        const cat_users = users_data.reduce((accu, user) => {
+            let initial = user.name[0]
+
+            if (!accu[initial]) {
+                accu[initial] = { users: [user] }
+            } else {
+                accu[initial].users.push(user)
+            }
+            return accu;
+        }, {})
+
+        for (const [key, value] of Object.entries(cat_users)) {
+            users_initial.push(<UserCard users_prop={value} initial={key}  />)
+        }
+
+        return users_initial;
+
+    }
+
+    const triggerMusic = () => {
+        setUsersDisplay(false)
+        setMoviesDisplay(false)
+        setMusicDisplay(true)
+    }
+
+    const triggerMovies = () => {
+        setUsersDisplay(false)
+        setMoviesDisplay(true)
+        setMusicDisplay(false)
+    }
+
+    const triggerUsers = () => {
+        setUsersDisplay(true)
+        setMoviesDisplay(false)
+        setMusicDisplay(false)
     }
 
 
     return (
         <div>
             <div>
-             <Container>
-                <Form className="justify-content-center my-5" onSubmit={handleSubmit}>
-                    <Form.Row className="align-items-center">
-                        <Col xs="auto">
-                            <Form.Label htmlFor="inlineFormInput" srOnly>
-                               Start Date
-                            </Form.Label>
-                            <Form.Control
-                                className="mb-2"
-                                id="inlineFormInput"
-                                type="date"
-                                onChange={e => setStartDate(e.target.value)}
-                            />
+                <Container className="my-5">
+                    <Row className="justify-content-center">
+                        <Col xs="auto" lg={4}>
+                            <DisplayUsersBtn displayUsers={triggerUsers} />
                         </Col>
-                        <Col xs="auto">
-                            <Form.Label htmlFor="inlineFormInputGroup" srOnly>
-                                End Date
-                            </Form.Label>
-                            <InputGroup className="mb-2">
-                                <FormControl
-                                 id="inlineFormInputGroup"
-                                 type="date"
-                                 onChange={e => setEndDate(e.target.value)}
-                                 />
-                            </InputGroup>
+                        <Col xs="auto" lg={4}>
+                            <DisplayMoviesBtn displayMovies={triggerMovies} />
                         </Col>
-                        <Col xs="auto">
-                            <input type="submit"
-                                    className="mb-2 btn btn-primary"
-                                value="Search" />
+                        <Col xs="auto" lg={4}>
+                            <DisplayMusicBtn displayMusic={triggerMusic} />
                         </Col>
-                    </Form.Row>
-                </Form>
+                    </Row>
+                    {moviesDisplay &&
+                        <Container>
+                            <h2 className="mt-5">Movie Releases by years</h2>
+                            {showMovies(movies_years)}
+                        </Container>
+                    }
+                    {musicDisplay &&
+                        <Container>
+                            <h2 className="mt-5">Music Releases</h2>
+                        </Container>
+                    }
+                    {usersDisplay &&
+                        <Container>
+                            <h2 className="mt-5">Active Users</h2>
+                            {showUsers(users)}
+                        </Container>
+                    }
                 </Container>
 
-                <Container>
-                    <h3 className="section-title mb-5">Latest Movies</h3>
-
-                    <div className="card-columns">
-                        {displayData(movies, searched)}
-                    </div>
-                </Container>
             </div>
         </div>
     )
