@@ -104,13 +104,13 @@ const Home = () => {
                         </Col>
                     </Row>
                     {moviesDisplay &&
-                        <Container>
+                        <Container className="justify-content-center">
                             <h2 className="mt-5">Movie Releases by years</h2>
                             {showMovies(movies_years)}
                         </Container>
                     }
                     {musicDisplay &&
-                        <Container>
+                        <Container className="justify-content-center">
                             <h2 className="mt-5">Music Releases</h2>
                         </Container>
                     }

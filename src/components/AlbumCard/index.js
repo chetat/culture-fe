@@ -6,26 +6,26 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 
 
-const MovieCard = (props) => {
+const AlbumCard = (props) => {
 
-  const { movies} = props;
+  const { albums} = props;
   return (
 
     <div>
       <h3 className="my-5">{props.year}</h3>
       <Row>
 
-        {movies && movies.map((movie) =>
+        {albums && albums.map((album) =>
 
           <Col lg={3} className="my-2">
-            <Card className="movie-card">
-              <Link to={"/movies/detail/" + movie.id + "/" + movie.title} style={{ "color": "inherit", "textDecoration": "none" }}>
-                <Card.Img variant="top" src={movie.cover_url} />
+            <Card className="album-card">
+              <Link to={"/albums/detail/" + album.id + "/" + album.title} style={{ "color": "inherit", "textDecoration": "none" }}>
+                <Card.Img variant="top" src={album.cover_url} />
                 <Card.Body>
-                  <Card.Title className="movie-title">{movie.title}</Card.Title>
+                  <Card.Title className="album-title">{album.title}</Card.Title>
                 </Card.Body>
                 <Card.Footer>
-                  <small className="text-muted">{movie.release_date}</small>
+                  <small className="text-muted">{album.release_date}</small>
                 </Card.Footer>
               </Link>
             </Card>
@@ -37,7 +37,7 @@ const MovieCard = (props) => {
   );
 }
 
-MovieCard.propTypes = {
+AlbumCard.propTypes = {
   props: PropTypes.shape({
     image_url: PropTypes.string.isRequired,
     release_date: PropTypes.string.isRequired,
@@ -45,4 +45,4 @@ MovieCard.propTypes = {
   })
 }
 
-export default MovieCard;
+export default AlbumCard;

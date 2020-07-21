@@ -18,7 +18,6 @@ export const fetchMovies = () => async dispatch => {
 export const fetchMovie = (id) => async dispatch => {
     await axios.get(`${BASE_URL}/movies/${id}`)
         .then(response => {
-            console.log("Called")
             dispatch({
                 type: FETCH_MOVIE, payload: response.data
             })

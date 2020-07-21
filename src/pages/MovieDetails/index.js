@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom';
 
 const MovieDetail = (props) => {
     const movieId = props.match.params.movieId;
-    console.log(movieId)
     const dispatch = useDispatch()
     const { actors, movie } = useSelector(state => state.single_movie.movie_data)
 
@@ -22,10 +21,9 @@ const MovieDetail = (props) => {
 
     const render_movie = (movie) => {
         if (typeof movie !== "undefined") {
-            console.log("Hello")
             return (
                 <div>
-                    <Container>
+                    <Container className="my-5">
                         <h3 className="text-center py-5">Movie Details</h3>
                         <Row>
                             <Col lg={6}>

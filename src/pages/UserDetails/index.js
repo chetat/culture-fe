@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { fetchUser } from '../../actions/usersAction';
 import PropTypes from 'prop-types';
 import './styles.css'
-import MovieCard from '../../components/MovieCard';
+import FeaturedUser from '../../components/FeaturedUser';
 import { Link } from 'react-router-dom';
 
 const UserDetails = (props) => {
@@ -15,53 +15,59 @@ const UserDetails = (props) => {
     useEffect(() => {
         dispatch(fetchUser(userId))
     }, [])
-
-
-    const { user, movies_appeared } = useSelector(state => state.user.user_data)
-    console.log(movies_appeared)
+// 658634479 ----------  694763806
+    const { user, movies_appeared, albums_appeared } = useSelector(state => state.user.user_data)
+    // const {} = useSelector(state => )
 
     const render_actor = (user) => {
-        console.log(user)
         if (typeof user !== "undefined") {
             return (
                 <div>
-                   
-                    <Container>
+                    <Container className="justify-content-center my-5">
                         <h2 className="text-center py-5">User infos</h2>
                         <Row>
+                            <Col lg={4}>
+                                <img src={user.image} className="img-fluid" alt="Profile Pic"/>
+                            </Col>
                             <Col lg={6}>
                                 <h5>Name: {user.name}</h5>
                                 <h5>Biography :</h5>
                                 <p>{user.bio}</p>
-                                <h5>Also Known As : {user.aka}</h5>
+                                <h5>Also Known As: {user.aka}</h5>
                             </Col>
-                            <Col>
-                            <h5>Movies Featured</h5>
-
-                            <Row>
-                            {
-                                movies_appeared && movies_appeared.length > 0 ? movies_appeared.map((movie, index) => (
-                                    <Col lg={6}>
-                                        <MovieCard {...movie} key={index} />
+                        </Row>
+                        <Row className="my-5">
+                            <Col lg={6}>
+                                <h2>Movies Featured</h2>
+                                <Row>
+                                    {
+                                        movies_appeared && movies_appeared.length > 0 ? movies_appeared.map((movie, index) => (
+                                            <Col lg={6}>
+                                                <FeaturedUser data={movie} key={index} category={movie.category} />
+                                            </Col>
+                                        )) :  <Col lg={6}>
+                                        <h5>No Movies Featured</h5>
                                     </Col>
-                                )) : <div> <h2>No other Movie</h2> </div>
-                            }
-                            </Row>
-                            
+                                    }
+                                </Row>
                             </Col>
-                            <Col>
-                            <h5>Music Featured</h5>
-
-                            <Row>
-                            {
-                                movies_appeared && movies_appeared.length > 0 ? movies_appeared.map((movie, index) => (
-                                    <Col lg={6}>
-                                        <MovieCard {...movie} key={index} />
-                                    </Col>
-                                )) : <div> <h2>No other Movie</h2> </div>
-                            }
-                            </Row>
-                            
+                        </Row>
+                        <Row className="my-5">
+                            <Col lg={6}>
+                                <h2>Music Featured</h2>
+                                <Row>
+                                    {
+                                        albums_appeared && albums_appeared.length > 0 ? albums_appeared.map((album, index) => {
+                                            console.log("Album Logged here")
+                                            console.log(album)
+                                            return <Col lg={6}>
+                                                <FeaturedUser data={album} key={index} category={album.category} />
+                                            </Col>
+                                    }) : <Col lg={6}>
+                                            <h5>No Music Featured</h5>
+                                        </Col>
+                                    }
+                                </Row>
                             </Col>
                         </Row>
                         <Link to="/#" className="btn btn-primary">Return To Homepage</Link>
@@ -73,7 +79,6 @@ const UserDetails = (props) => {
                 <h2>User Not Found</h2>
             )
         }
-
     }
     return (
         <div>
@@ -82,8 +87,7 @@ const UserDetails = (props) => {
     )
 };
 UserDetails.propTypes = {
-    match: PropTypes.object.isRequired,
-
+    match: PropTypes.object.isRequired
 }
 
 export default UserDetails;
