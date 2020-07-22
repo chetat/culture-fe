@@ -46,7 +46,20 @@ const Home = () => {
         for (const [key, value] of Object.entries(movies)) {
             years.push(<MovieCard movies={value} year={key} />)
         }
-        return years;
+
+        if (years.length > 0) {
+            return (
+                <Container className="justify-content-center">
+                            <h2 className="mt-5">Movies Releases</h2>
+                            {years}
+                </Container>
+
+            )
+            } else {
+                return (
+                    <h3 className="my-5">Movies Not Available</h3>
+                )
+            }
     }
     const showMusic = (albums_data) => {
         const years = []
@@ -65,7 +78,19 @@ const Home = () => {
             years.push(<AlbumCard albums={value} year={key} />)
 
         }
-        return years;
+        if (years.length > 0) {
+            return (
+                <Container>
+                            <h2 className="mt-5">Music Releases</h2>
+                            {years}
+                </Container>
+
+            )
+            } else {
+                return (
+                    <h3 className="my-5">Music Not Available</h3>
+                )
+            }
     }
     const showUsers = (users_data) => {
         const users_initial = [];
@@ -84,8 +109,15 @@ const Home = () => {
             users_initial.push(<UserCard  users_prop={value} initial={key}  />)
         }
 
-        return users_initial;
+        if (users_initial.length > 0){
+            return (<Container>
+            <h2 className="mt-5">Active Users</h2>  {users_initial};
+            </Container>
 
+                )
+        } else {
+            return  <h3 className="my-5">No User Registered</h3>
+        }
     }
 
     const triggerMusic = () => {
@@ -123,22 +155,16 @@ const Home = () => {
                         </Col>
                     </Row>
                     {moviesDisplay &&
-                        <Container className="justify-content-center">
-                            <h2 className="mt-5">Movie Releases by years</h2>
-                            {showMovies(movies_years)}
-                        </Container>
+                     
+                            showMovies(movies_years)
                     }
                     {musicDisplay &&
-                        <Container className="justify-content-center">
-                            <h2 className="mt-5">Music Releases</h2>
-                            {showMusic(albums)}
-                        </Container>
+                        
+                            showMusic(albums)
                     }
                     {usersDisplay &&
-                        <Container>
-                            <h2 className="mt-5">Active Users</h2>
-                            {showUsers(users)}
-                        </Container>
+                        
+                            showUsers(users)
                     }
                 </Container>
 
