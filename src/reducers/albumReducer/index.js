@@ -1,15 +1,15 @@
 
-import { FETCH_MOVIE } from '../../actions/types';
+import { FETCH_ALBUM } from '../../actions/types';
 
 export const initialState = {
-    movie_data: {},
+    album_data: {},
 };
 
 const movieReducer = (state=initialState, action) => {
     switch(action.type){
-        case FETCH_MOVIE:
+        case FETCH_ALBUM:
             return Object.assign({}, state, {
-                movie_data: action.payload
+                album_data: action.payload
             })
         default:
             return state;

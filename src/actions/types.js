@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:5000/api/v1"
+export const BASE_URL = "https://culap.herokuapp.com/api/v1"
 export const USER_LOADING = 'USER_LOADING';
 export const LOGIN_LOADING = 'LOGIN_LOADING';
 
@@ -23,3 +23,6 @@ export const UPDATE_USER_ERROR = 'UPDATE_USER_ERROR';
 export const FETCH_MOVIES = 'FETCH_MOVIES';
 export const FETCH_MOVIE = 'FETCH_MOVIE';
 export const FETCH_SEARCHED_RESULTS = 'FETCH_SEARCHED_RESULTS'
+
+export const FETCH_ALBUMS = 'FETCH_ALBUMS';
+export const FETCH_ALBUM = 'FETCH_ALBUM';

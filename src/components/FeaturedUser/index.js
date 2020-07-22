@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Card, Col, Row } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './styles.css';
@@ -33,11 +33,11 @@ const FeaturedUser = (props) => {
     if(typeof data !== "undefined" && category === "Movies" && !isEmpty(data) ) {
         const movie = data;
         return (
-            <Card className="movie-card my-1">
+            <Card className="movie-card my-1 flex-fill">
                 <Link to={"/movies/detail/" + movie.id + "/" + movie.title} style={{ "color": "inherit", "textDecoration": "none" }}>
-                    <Card.Img variant="top" src={movie.cover_url} />
+                    <Card.Img variant="top" src={movie.cover_url} className="img-fluid" />
                     <Card.Body>
-                        <Card.Title className="movie-title text-center">{movie.title}</Card.Title>
+                        <h5>{movie.title}</h5>
                     </Card.Body>
                 </Link>
             </Card>

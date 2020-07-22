@@ -1,5 +1,5 @@
 
-import {FETCH_MOVIE, FETCH_ERROR, FETCH_USER} from '../../actions/types';
+import { FETCH_USER } from '../../actions/types';
 
 export const initialState = {
     user_data: {},

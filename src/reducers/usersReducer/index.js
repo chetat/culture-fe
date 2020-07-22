@@ -1,5 +1,5 @@
 
-import {FETCH_ERROR, FETCH_USERS} from '../../actions/types';
+import {FETCH_USERS} from '../../actions/types';
 
 export const initialState = {
     users_data: {},

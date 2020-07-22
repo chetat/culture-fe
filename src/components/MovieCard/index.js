@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Card, Container, Col, Row } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './styles.css';
@@ -8,7 +8,7 @@ import './styles.css';
 
 const MovieCard = (props) => {
 
-  const { movies} = props;
+  const { movies } = props;
   return (
 
     <div>
@@ -16,7 +16,6 @@ const MovieCard = (props) => {
       <Row>
 
         {movies && movies.map((movie) =>
-
           <Col lg={3} className="my-2">
             <Card className="movie-card">
               <Link to={"/movies/detail/" + movie.id + "/" + movie.title} style={{ "color": "inherit", "textDecoration": "none" }}>

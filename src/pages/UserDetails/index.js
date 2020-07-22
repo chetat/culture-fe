@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchUser } from '../../actions/usersAction';
@@ -42,7 +42,7 @@ const UserDetails = (props) => {
                                 <Row>
                                     {
                                         movies_appeared && movies_appeared.length > 0 ? movies_appeared.map((movie, index) => (
-                                            <Col lg={6}>
+                                            <Col lg={4}>
                                                 <FeaturedUser data={movie} key={index} category={movie.category} />
                                             </Col>
                                         )) :  <Col lg={6}>
@@ -53,14 +53,14 @@ const UserDetails = (props) => {
                             </Col>
                         </Row>
                         <Row className="my-5">
-                            <Col lg={6}>
+                            <Col lg={6} >
                                 <h2>Music Featured</h2>
                                 <Row>
                                     {
                                         albums_appeared && albums_appeared.length > 0 ? albums_appeared.map((album, index) => {
                                             console.log("Album Logged here")
                                             console.log(album)
-                                            return <Col lg={6}>
+                                            return <Col lg={6} className="d-flex">
                                                 <FeaturedUser data={album} key={index} category={album.category} />
                                             </Col>
                                     }) : <Col lg={6}>
