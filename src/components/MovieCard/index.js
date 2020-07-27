@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Card, Col, Row } from "react-bootstrap";
+import { Container, Card, Col, Row } from "react-bootstrap";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './styles.css';
@@ -10,8 +10,8 @@ const MovieCard = (props) => {
 
   const { movies } = props;
   return (
-
-    <div>
+    <Container>
+      <div>
       <h3 className="my-5">{props.year}</h3>
       <Row>
 
@@ -33,6 +33,8 @@ const MovieCard = (props) => {
       </Row>
 
     </div>
+    </Container>
+
   );
 }
 

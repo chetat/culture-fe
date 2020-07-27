@@ -1,4 +1,5 @@
-export const BASE_URL = "https://culap.herokuapp.com/api/v1"
+//export const BASE_URL = "https://culap.herokuapp.com/api/v1"
+export const BASE_URL = "http://localhost:5000/api/v1"
 export const USER_LOADING = 'USER_LOADING';
 export const LOGIN_LOADING = 'LOGIN_LOADING';
 
