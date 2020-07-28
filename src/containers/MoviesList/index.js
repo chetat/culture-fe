@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useEffect } from 'react';
+import { Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies } from '../../actions/moviesAction';
 import MovieCard from '../../components/MovieCard';
@@ -16,9 +16,20 @@ const MovieList = () => {
     const movies_years = useSelector(state => state.movies.movies)
 
 
-    const showMovies = (movies) => {
+    const showMovies = (movies_data) => {
         const years = []
-        for (const [key, value] of Object.entries(movies)) {
+        const cat_movies = movies_data.reduce((accu, movie) => {
+            let year = movie.year;
+            
+            if (!accu[year]) {
+                accu[year] = {movies: [movie]}
+            }else {
+                accu[year].movies.push(movie)
+            }
+            return accu;
+        }, {})
+        for (const [key, value] of Object.entries(cat_movies)) {
+            console.log(key)
             years.push(<MovieCard movies={value} year={key} />)
         }
 
@@ -26,10 +37,11 @@ const MovieList = () => {
             return (
                 <Container className="justify-content-center">
                     <Row>
+                    Sort By: 
                     <select>
-                        <option value="albums">Albums</option>
-                        <option value="genre">Genre</option>
-                        <option value="title">Title</option>
+                        <option value="albums">Alphabetical Order</option>
+                        <option value="genre">Genres</option>
+                        <option value="title">Duration</option>
                     </select>
                     </Row>
                    

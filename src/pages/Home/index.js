@@ -58,9 +58,6 @@ const Home = () => {
                             <DisplayMusicBtn displayMusic={triggerMusic} />
                         </Col>
                     </Row>
-                    <Row>
-
-                    </Row>
                     {moviesDisplay &&
 
                         <MovieList />

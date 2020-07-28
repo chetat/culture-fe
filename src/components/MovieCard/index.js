@@ -8,7 +8,9 @@ import './styles.css';
 
 const MovieCard = (props) => {
 
-  const { movies } = props;
+  const { movies } = props.movies;
+  console.log(movies)
+
   return (
     <Container>
       <div>

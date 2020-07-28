@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useEffect } from 'react';
+import { Container} from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAlbums } from '../../actions/albumsAction';
 import AlbumCard from '../../components/AlbumCard';
