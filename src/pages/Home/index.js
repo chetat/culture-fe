@@ -33,15 +33,7 @@ const Home = () => {
         setMusicDisplay(false)
     }
 
-    const sortByTitle = () => {
-        return 0
-    }
-    const sortByDuration = () => {
-        return 0;
-    }
-    const sortByReleaseDate = () => {
-        return 0
-    }
+
 
     return (
         <div>

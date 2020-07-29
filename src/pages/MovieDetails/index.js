@@ -6,6 +6,7 @@ import { fetchMovie } from '../../actions/moviesAction';
 import PropTypes from 'prop-types';
 import './styles.css';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 
 const MovieDetail = (props) => {
@@ -21,6 +22,9 @@ const MovieDetail = (props) => {
 
     const render_movie = (movie) => {
         if (typeof movie !== "undefined") {
+            console.log(movie.duration)
+            const duration = moment.duration(movie.duration, 'minutes')
+            console.log(duration.humanize())
             return (
                 <div>
                     <Container className="my-5">
@@ -28,13 +32,13 @@ const MovieDetail = (props) => {
                         <Row>
                             <Col lg={6}>
                                 <div>
-                                    <img src={movie.cover_url} alt="Nothing attached" />
+                                    <img className="img-fluid" src={movie.cover_url} alt="Nothing attached" />
                                 </div>
                             </Col>
                             <Col lg={6}>
                                 <h4>Title: {movie.title}</h4>
                                 <h4>Release Date : {movie.release_date}</h4>
-                                <h4>Duration : {movie.duration}</h4>
+                                <h4>Duration : {duration.humanize()}</h4>
                                 <h4>Content Rating: {movie.pg}</h4>
                                 <h4>Synopsis : <p>{movie.synopsis}</p></h4>
                                 <h4>Actors:
