@@ -1,0 +1,21 @@
+.image-height {
+    height: 15%;
+}
+.year-row {
+    background-color: rgb(137, 120, 153);
+    padding: 0.5rem 0;
+    color: #ffffff;
+}
+
+.year-row a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.year-heading {
+    margin-bottom: 0;
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+    
+ }

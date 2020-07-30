@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies } from '../../actions/moviesAction';
-import MovieCard from '../../components/MovieCard';
+import MovieCard from '../../components/MovieRow';
 import { EditorBorderLeft } from 'material-ui/svg-icons';
-
-
 
 const MovieList = () => {
 
     const [sortType, setSortType] = useState('year');
-    const [order, setOrder] = useState('asc');
+    const [order, setOrder] = useState('desc');
 
     const dispatch = useDispatch()
 
@@ -89,37 +87,21 @@ function sortObjectEntries(obj){
                 <div>
                     <Row className="my-5">
                         <Col lg={3}>
-                            <div class="input-group mb-3">
+                        <div className="input-group mb-3">
                                 <div className="input-group-prepend">
-                                    <label class="input-group-text" for="inputGroupSelect01">Sort By</label>
-                                </div>
-                                <select onChange={
-                                    (e) => setSortType(e.target.value)
-                                } className="custom-select" id="inputGroupSelect01">
-                                    <option value="year">Year</option>
-                                    <option value="title">Title</option>
-                                    <option value="duration">Duration</option>
-                                </select>
-                            </div>
-
-                        </Col>
-
-                        <Col lg={3}>
-                        <div class="input-group mb-3">
-                                <div className="input-group-prepend">
-                                    <label className="input-group-text" for="inputGroupSelect02">Order</label>
+                                    <label className="input-group-text" for="inputGroupSelect02">Order By</label>
                                 </div>
                                 <select onChange={
                                     (e) => setOrder(e.target.value)
                                 }
                                  className="custom-select" id="inputGroupSelect02">
-                                <option value="asc">Ascending</option>
-                                <option value="desc">Descending</option>
+                                <option value="desc" selected={true}>Latest Releases</option>
+                                <option value="asc">Earliest Releases</option>
                                 </select>
                             </div>
                         </Col>
                     </Row>
-                    <h2 className="mt-5">Movies Releases</h2>
+                    <h2 className="mt-5">Movies Releases By Years</h2>
                     {years}
                 </div>
             )
@@ -133,11 +115,13 @@ function sortObjectEntries(obj){
 
     
     const sortedByTitle = (movies, sortType, order) =>{
-        const sorted = movies.sort(compareValues(sortType, order))
-        console.log(movies)
-        console.log("After Sort")
-        console.log(sorted)
-        return showMovies(sorted);
+        if (movies.length > 0) {
+            const sorted = movies.sort(compareValues(sortType, order))
+            return showMovies(sorted);
+        }else {
+            return <div>Nothing Here</div>
+        }
+
     }
 
 

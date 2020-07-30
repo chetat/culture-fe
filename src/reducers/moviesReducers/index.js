@@ -1,10 +1,10 @@
-import {FETCH_MOVIES, FETCH_SEARCHED_RESULTS, FETCH_ERROR} from '../../actions/types';
+import {FETCH_MOVIES, FETCH_MOVIES_YEAR, FETCH_ERROR} from '../../actions/types';
 
 export const initialState = {
     isLoading: false,
     fetchError: null,
     movies: {},
-    searched_data: {}
+    movies_year: {}
 
 };
 
@@ -14,9 +14,9 @@ const moviesReducer = (state=initialState, action) => {
             return {
                 ...state, movies: action.payload
             };
-        case FETCH_SEARCHED_RESULTS:
+        case FETCH_MOVIES_YEAR:
             return Object.assign({}, state, {
-                    searched_data: action.payload
+                    movies_year: action.payload
                 });
         case FETCH_ERROR:
             return {
