@@ -12,21 +12,25 @@ const UsersList = () => {
     useEffect(() => {
         dispatch(fetchUsers())
     }, [])
-
+    console.log("Hello")
     const users = useSelector(state => state.users.users_data)
-
+    console.log(users)
     const showUsers = (users_data) => {
         const users_initial = [];
-        const cat_users = users_data.reduce((accu, user) => {
-            let initial = user.name[0]
-
-            if (!accu[initial]) {
-                accu[initial] = { users: [user] }
-            } else {
-                accu[initial].users.push(user)
-            }
-            return accu;
-        }, {})
+        let cat_users = []
+        if (typeof users_data !== "undefined" && Array.isArray(users_data)){
+            cat_users = users_data.reduce((accu, user) => {
+                let initial = user.name[0]
+    
+                if (!accu[initial]) {
+                    accu[initial] = { users: [user] }
+                } else {
+                    accu[initial].users.push(user)
+                }
+                return accu;
+            }, {})
+        }
+      
 
         for (const [key, value] of Object.entries(cat_users)) {
             users_initial.push(<UserCard  users_prop={value} initial={key}  />)

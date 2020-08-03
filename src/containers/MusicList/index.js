@@ -18,16 +18,20 @@ const MusicList = () => {
 
     const showMusic = (albums_data) => {
         const years = []
-        const cat_albums = albums_data.reduce((accu, album) => {
-            let year = album.year;
-            
-            if (!accu[year]) {
-                accu[year] = {albums: [album]}
-            }else {
-                accu[year].albums.push(album)
-            }
-            return accu;
-        }, {})
+        let cat_albums = [];
+        if (typeof albums_data !== "undefined" && Array.isArray(albums_data)){
+            cat_albums = albums_data.reduce((accu, album) => {
+                let year = album.year;
+                
+                if (!accu[year]) {
+                    accu[year] = {albums: [album]}
+                }else {
+                    accu[year].albums.push(album)
+                }
+                return accu;
+            }, {})
+        }
+   
         console.log(cat_albums)
         for (const [key, value] of Object.entries(cat_albums)) {
             years.push(<AlbumCard albums={value} year={key} />)

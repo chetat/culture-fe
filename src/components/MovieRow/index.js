@@ -28,7 +28,7 @@ const MovieRow = (props) => {
            
         <Row className="my-2">
           {movies && movies.slice(0, 4).map((movie) =>
-            <Col lg={3} md={3}>
+            <Col lg={3} md={3} key={movie.id}>
              <MovieCard movie={movie} />
             </Col>
           )}

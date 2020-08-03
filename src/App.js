@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor, getHistory } from './Store';
 // Routes
 import Routes from './Routes';
+import Navi from './components/Navig';
 
 const history = getHistory()
 export default class App extends Component {
@@ -16,6 +17,7 @@ export default class App extends Component {
                 <ConnectedRouter history={history}> { /* place ConnectedRouter under Provider */}
                     <Router history={history}>
                         <PersistGate persistor={persistor}>
+                            <Navi />
                             <Routes />
                         </PersistGate>
                     </Router>

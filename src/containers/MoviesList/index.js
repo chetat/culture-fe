@@ -19,8 +19,9 @@ const MovieList = () => {
 
     const movies_years = useSelector(state => state.movies.movies)
 
-    const showMovies = (movies_data, sortYear) => {
+    const showMovies = (movies_data) => {
         const years = []
+        
         const cat_movies = movies_data.reduce((accu, movie) => {
             let year = movie.year;
 
@@ -49,16 +50,15 @@ const MovieList = () => {
                         <Col lg={3}>
                             <div className="input-group mb-3">
                                 <div className="input-group-prepend">
-                                    <label className="input-group-text" for="inputGroupSelect02">Order By</label>
+                                    <label className="input-group-text" htmlFor="inputGroupSelect02">Order By</label>
                                 </div>
                                 <select onChange={
                                     (e) => {
-                                        console.log("Hey", e.target.value)
                                         setOrder(e.target.value)
                                     }
                                 }
                                     className="custom-select" id="inputGroupSelect02">
-                                    <option value="desc" selected={true}>Latest Releases</option>
+                                    <option value="desc">Latest Releases</option>
                                     <option value="asc">Earliest Releases</option>
                                 </select>
                             </div>

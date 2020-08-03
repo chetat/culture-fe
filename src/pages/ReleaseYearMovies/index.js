@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Form, FormControl, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getMovieByYear } from '../../actions/moviesAction';
@@ -8,7 +8,7 @@ import './styles.css';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import MovieCard from '../../components/MovieCard';
-import {compareValues, compareDateValues} from '../../helpers';
+import { compareValues, compareDateValues } from '../../helpers';
 
 
 const ReleaseYearMovies = (props) => {
@@ -31,7 +31,7 @@ const ReleaseYearMovies = (props) => {
             let sorted = [];
             if (sortType === "release_date") {
                 sorted = movies.sort(compareDateValues(sortType, order))
-            }else{
+            } else {
                 sorted = movies.sort(compareValues(sortType, order))
             }
             return renderMovies(sorted);
@@ -57,7 +57,14 @@ const ReleaseYearMovies = (props) => {
     } else {
         return (
             <Container>
+
                 <Row className="my-5">
+                    <Col lg={4}>
+                        <Form inline>
+                            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                            <Button variant="outline-success">Search</Button>
+                        </Form>
+                    </Col>
                     <Col lg={8}>
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
@@ -97,10 +104,9 @@ const ReleaseYearMovies = (props) => {
                                 <option value="title-desc">Title (Z-A)</option>
                             </select>
                         </div>
-                        <Link to="/#" className="btn btn-primary mt-2">Return to Homepage</Link>
                     </Col>
                 </Row>
-                <h2 className="mt-5">Movies Releases in {year}</h2>
+                <h2 className="mt-5">Movies Released in {year}</h2>
                 <Row className="my-2">
                     {sortedMovies(movies, sortType, order)}
                 </Row>

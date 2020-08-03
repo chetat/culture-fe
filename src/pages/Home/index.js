@@ -39,17 +39,6 @@ const Home = () => {
         <div>
             <div>
                 <Container className="my-5">
-                    <Row className="justify-content-center">
-                        <Col xs="auto" lg={4}>
-                            <DisplayUsersBtn displayUsers={triggerUsers} />
-                        </Col>
-                        <Col xs="auto" lg={4}>
-                            <DisplayMoviesBtn displayMovies={triggerMovies} />
-                        </Col>
-                        <Col xs="auto" lg={4}>
-                            <DisplayMusicBtn displayMusic={triggerMusic} />
-                        </Col>
-                    </Row>
                     {moviesDisplay &&
 
                         <MovieList />
