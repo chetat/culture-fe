@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container} from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAlbums } from '../../actions/albumsAction';
@@ -6,7 +6,7 @@ import AlbumCard from '../../components/AlbumCard';
 
 
 const MusicList = () => {
-
+    
     const dispatch = useDispatch();
 
     useEffect(() => {

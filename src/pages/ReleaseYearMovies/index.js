@@ -3,10 +3,8 @@ import { Container, Row, Col, Form, FormControl, Button } from "react-bootstrap"
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getMovieByYear } from '../../actions/moviesAction';
-import PropTypes from 'prop-types';
 import './styles.css';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
 import MovieCard from '../../components/MovieCard';
 import { compareValues, compareDateValues } from '../../helpers';
 
@@ -15,6 +13,8 @@ const ReleaseYearMovies = (props) => {
 
     const [order, setOrder] = useState('');
     const [sortType, setSortType] = useState('');
+    const [search, setSearch] = useState('');
+
 
     const year = props.match.params.year;
 
@@ -24,7 +24,7 @@ const ReleaseYearMovies = (props) => {
         dispatch(getMovieByYear(year))
     }, [])
 
-    const movies = useSelector(state => state.movies.movies_year);
+    const state_movies = useSelector(state => state.movies.movies_year);
 
     const sortedMovies = (movies, sortType, order) => {
         if (movies.length > 0) {
@@ -40,8 +40,9 @@ const ReleaseYearMovies = (props) => {
         }
     }
 
-
-
+    const searchSpace = (e) => {
+        setSearch(e.target.value)
+    }
     const renderMovies = (movies) => {
         return (movies.length > 0 ? movies.map((movie) => {
             return (<Col lg={3} md={3} key={movie.id}>
@@ -51,6 +52,9 @@ const ReleaseYearMovies = (props) => {
         ) : <div>No Movie</div>
         )
     }
+    const movies = state_movies.filter((movie) => {
+        return movie.title.toLowerCase().includes(search.toLowerCase())
+    })
 
     if (!movies) {
         return <div>Loading</div>
@@ -59,10 +63,9 @@ const ReleaseYearMovies = (props) => {
             <Container>
 
                 <Row className="my-5">
-                    <Col lg={4}>
+                    <Col lg={4} sm={4}>
                         <Form inline>
-                            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                            <Button variant="outline-success">Search</Button>
+                            <FormControl type="text" placeholder="Search" onChange={(e) => (searchSpace(e))} className="mr-sm-2" />
                         </Form>
                     </Col>
                     <Col lg={8}>
@@ -108,7 +111,7 @@ const ReleaseYearMovies = (props) => {
                 </Row>
                 <h2 className="mt-5">Movies Released in {year}</h2>
                 <Row className="my-2">
-                    {sortedMovies(movies, sortType, order)}
+                     {sortedMovies(movies, sortType, order)}
                 </Row>
             </Container>
         )
