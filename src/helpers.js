@@ -1,5 +1,5 @@
 //Helper function to sort array of objects by given attribute
-export default function compareValues(key, order = 'asc') {
+export function compareValues(key, order = 'asc') {
     console.log(key)
     return function innerSort(a, b) {
         if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
@@ -23,9 +23,32 @@ export default function compareValues(key, order = 'asc') {
         );
     };
 }
-function sortObjectEntries(obj){
+
+// Sort Object by date
+export function compareDateValues(key, order = 'asc') {
+    console.log(key)
+    return function innerSort(a, b) {
+        if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+            // property doesn't exist on either object
+            return 0;
+        }
+
+        const dateA = new Date(a[key]).getTime();
+        const dateB = new Date(b[key]).getTime();
+        let comparison = 0;
+        if (dateA > dateB) {
+            comparison = 1;
+        } else if (dateA < dateB) {
+            comparison = -1;
+        }
+        return (
+            (order === 'desc') ? (comparison * -1) : comparison
+        );
+    };
+}
+
+export function sortObjectEntries(obj){
     const sortedArr = Object.entries(obj).sort((a,b)=>b[0]-a[0])
-    console.log(Object.fromEntries(sortedArr))
     return sortedArr
 }
  /*     function sortObject(obj) {
