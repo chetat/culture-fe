@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Container} from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAlbums } from '../../actions/albumsAction';
@@ -11,7 +11,7 @@ const MusicList = () => {
 
     useEffect(() => {
         dispatch(fetchAlbums())
-    }, []);
+    }, [dispatch]);
 
 
     const albums = useSelector(state => state.albums.albums);
@@ -32,7 +32,6 @@ const MusicList = () => {
             }, {})
         }
    
-        console.log(cat_albums)
         for (const [key, value] of Object.entries(cat_albums)) {
             years.push(<AlbumCard albums={value} year={key} />)
 

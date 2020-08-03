@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, FormControl, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, FormControl} from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getMovieByYear } from '../../actions/moviesAction';
 import './styles.css';
-import { Link } from 'react-router-dom';
 import MovieCard from '../../components/MovieCard';
 import { compareValues, compareDateValues } from '../../helpers';
 
@@ -22,7 +21,7 @@ const ReleaseYearMovies = (props) => {
 
     useEffect(() => {
         dispatch(getMovieByYear(year))
-    }, [])
+    }, [dispatch, year])
 
     const state_movies = useSelector(state => state.movies.movies_year);
 
@@ -65,7 +64,7 @@ const ReleaseYearMovies = (props) => {
                 <Row className="my-5">
                     <Col lg={4} sm={4}>
                         <Form inline>
-                            <FormControl type="text" placeholder="Search" onChange={(e) => (searchSpace(e))} className="mr-sm-2" />
+                            <FormControl type="text" placeholder="Search Movies" onChange={(e) => (searchSpace(e))} className="mr-sm-2" />
                         </Form>
                     </Col>
                     <Col lg={8}>

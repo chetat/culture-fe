@@ -1,9 +1,6 @@
 
 import React from 'react';
-import { Navbar, FormControl, Button, Form, Nav } from "react-bootstrap";
-import MovieCard from '../MovieCard';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Navbar, Nav } from "react-bootstrap";
 
 
 const Navi = () => {

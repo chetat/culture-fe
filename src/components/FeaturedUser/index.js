@@ -13,8 +13,6 @@ function isEmpty(obj) {
 const FeaturedUser = (props) => {
 
     const { data, category } = props;
-    console.log("Music Album")
-    console.log(data)
     if (typeof data !== "undefined" && category === "Music" && !isEmpty(data) ){
         const album = data;
      

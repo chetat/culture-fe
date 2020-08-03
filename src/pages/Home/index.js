@@ -1,13 +1,8 @@
 import  React, { useState } from 'react';
-import { Container, Row, Col } from "react-bootstrap";
-import DisplayMoviesBtn from '../../components/SearchButtons/DisplayMoviesBtn';
-import DisplayUsersBtn from '../../components/SearchButtons/DisplayUsersBtn';
-import DisplayMusicBtn from '../../components/SearchButtons/DisplayMusicBtn'
+import { Container } from "react-bootstrap";
 import MovieList from '../../containers/MoviesList';
 import UsersList from '../../containers/UsersList';
-
-
-import './styles.css'
+import './styles.css';
 import MusicList from '../../containers/MusicList';
 
 const Home = () => {

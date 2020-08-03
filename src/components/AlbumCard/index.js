@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Card, Container, Col, Row } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './styles.css';

@@ -1,8 +1,5 @@
-import  React, { useState } from 'react';
-import { Container, Row, Col } from "react-bootstrap";
-import DisplayMoviesBtn from '../../components/SearchButtons/DisplayMoviesBtn';
-import DisplayUsersBtn from '../../components/SearchButtons/DisplayUsersBtn';
-import DisplayMusicBtn from '../../components/SearchButtons/DisplayMusicBtn'
+import  React from 'react';
+import { Container } from "react-bootstrap";
 import MovieList from '../../containers/MoviesList';
 
 import './styles.css'

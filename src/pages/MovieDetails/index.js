@@ -16,7 +16,7 @@ const MovieDetail = (props) => {
 
     useEffect(() => {
         dispatch(fetchMovie(movieId))
-    }, [])
+    }, [dispatch, movieId])
 
 
 
@@ -55,7 +55,7 @@ const MovieDetail = (props) => {
                                         </div>
                                     }
                                 </h4>
-                                <a href={movie.trailer_url} target="_blank" rel="noopener noreferer"> Watch Now </a> <br/>
+                                <a href={movie.trailer_url} target="_blank" rel="noopener noreferrer"> Watch Now </a> <br/>
 
                                 <Link to="/#" className="btn btn-primary mt-2">Return to Homepage</Link>
                             </Col>

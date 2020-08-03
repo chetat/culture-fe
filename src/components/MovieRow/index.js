@@ -1,8 +1,7 @@
 
 import React from 'react';
-import { Container, Card, Col, Row } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import MovieCard from '../MovieCard';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

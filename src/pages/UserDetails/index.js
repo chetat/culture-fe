@@ -14,7 +14,7 @@ const UserDetails = (props) => {
 
     useEffect(() => {
         dispatch(fetchUser(userId))
-    }, [])
+    }, [dispatch, userId])
 // 658634479 ----------  694763806
     const { user, movies_appeared, albums_appeared } = useSelector(state => state.user.user_data)
     // const {} = useSelector(state => )

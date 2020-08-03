@@ -15,7 +15,7 @@ const MovieDetail = (props) => {
 
     useEffect(() => {
         dispatch(fetchAlbum(albumId))
-    }, [])
+    }, [dispatch, albumId])
 
 
 
@@ -53,7 +53,7 @@ const MovieDetail = (props) => {
                                     }
                                 </h5>
                                 
-                                <a href={album.album_url} target="_blank" rel="noopener noreferer"> Buy Album </a> <br/>
+                                <a href={album.album_url} target="_blank" rel="noopener noreferrer"> Buy Album </a> <br/>
 
                                 <Link to="/#" className="btn btn-primary mt-2">Return to Homepage</Link>
                             </Col>
