@@ -10,7 +10,9 @@ import { Link } from 'react-router-dom';
 
 const MovieDetail = (props) => {
     const albumId = props.match.params.albumId;
+    
     const dispatch = useDispatch()
+
     const { users, album } = useSelector(state => state.album.album_data)
 
     useEffect(() => {
@@ -20,7 +22,7 @@ const MovieDetail = (props) => {
 
 
     const render_movie = (album, users) => {
-        console.log(users)
+
         if (typeof album !== "undefined") {
             return (
                 <div>
@@ -77,7 +79,6 @@ const MovieDetail = (props) => {
 };
 MovieDetail.propTypes = {
     match: PropTypes.object.isRequired,
-
 }
 
 export default MovieDetail;

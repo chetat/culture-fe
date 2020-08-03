@@ -8,31 +8,31 @@ import './styles.css';
 
 const AlbumCard = (props) => {
 
-  const {albums} = props.albums
-  if (typeof albums !== "undefined"){
+  const { albums } = props.albums
+  if (typeof albums !== "undefined") {
     return (
-        <div>
-          <h3 className="my-5">{props.year}</h3>
-          <Row>
+      <div>
+        <h3 className="my-5">{props.year}</h3>
+        <Row>
           {albums && albums.map((album) =>
-                <Col lg={3} className="my-2">
-                <Card className="album-card">
-                    <Link to={"/albums/detail/" + album.id + "/" + album.title} style={{ "color": "inherit", "textDecoration": "none" }}>
-                    <Card.Img variant="top" src={album.cover_url} />
-                    <Card.Body>
-                        <Card.Title className="album-title">{album.album_name}</Card.Title>
-                    </Card.Body>
-                    <Card.Footer>
-                        <small className="text-muted">{album.release_date}</small>
-                    </Card.Footer>
-                    </Link>
-                </Card>
-                </Col>
-                )}
-          </Row>
-    
-        </div>
-      );
+            <Col lg={3} className="my-2">
+              <Card className="album-card">
+                <Link to={"/albums/detail/" + album.id + "/" + album.title} style={{ "color": "inherit", "textDecoration": "none" }}>
+                  <Card.Img variant="top" src={album.cover_url} />
+                  <Card.Body>
+                    <Card.Title className="album-title">{album.album_name}</Card.Title>
+                  </Card.Body>
+                  <Card.Footer>
+                    <small className="text-muted">{album.release_date}</small>
+                  </Card.Footer>
+                </Link>
+              </Card>
+            </Col>
+          )}
+        </Row>
+
+      </div>
+    );
   }
 
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies } from '../../actions/moviesAction';
-import MovieCard from '../../components/MovieRow';
+import MovieRow from '../../components/MovieRow';
 import {compareValues, sortObjectEntries} from '../../helpers';
 
 const MovieList = () => {
@@ -41,7 +41,7 @@ const MovieList = () => {
         }
 
         for (const [key, value] of iterData) {
-            years.push(<MovieCard movies={value} year={key} ord="asc" />)
+            years.push(<MovieRow movies={value} year={key} ord="asc" />)
         }
         if (years.length > 0) {
             return (

@@ -17,7 +17,7 @@ const UserCard = (props) => {
       <Row>
 
         {users && users.map((user) => {
-          return <Col lg={3} className="my-2">
+          return <Col lg={3} className="my-2" key={user.id}>
             <Card className="user-card">
               <Link to={"/users/detail/" + user.id + "/" + user.name} style={{ "color": "inherit", "textDecoration": "none" }}>
                 <Card.Img variant="top" src={user.cover_url} />
