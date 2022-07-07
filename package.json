@@ -11,7 +11,7 @@
     "connected-react-router": "^6.8.0",
     "material-ui": "^0.20.2",
     "materialize-css": "^1.0.0-rc.2",
-    "moment": "^2.27.0",
+    "moment": "^2.29.4",
     "react": "^16.13.1",
     "react-bootstrap": "^1.2.2",
     "react-dom": "^16.13.1",
